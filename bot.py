@@ -39,12 +39,12 @@ def tel_send_message(chat_id, text):
  
     return r
  
-def tel_send_image(chat_id):
+def tel_send_image(chat_id, caption: str):
     url = f'https://api.telegram.org/bot{TOKEN}/sendPhoto'
     payload = {
         'chat_id': chat_id,
-        'photo': "https://animecorner.me/wp-content/uploads/2022/05/Spy-x-family-06-31.png",
-        'caption': "This is a sample image"
+        'photo': "https://github.com/DoubleSpicy/anya-like-this-bot/blob/main/resources/anya-likes-typhoon8.jpg?raw=true",
+        'caption': caption
     }
  
     r = requests.post(url, json=payload)
@@ -56,16 +56,16 @@ def index():
         msg = request.get_json()
         try:
             chat_id, txt = tel_parse_message(msg)
-            if txt == "hi":
+            if txt == "like this":
                 # tel_send_message(chat_id,"Hello, world!")
-                tel_send_image(chat_id)
-            elif txt == "image":
-                tel_send_image(chat_id)
+                tel_send_image(chat_id, 'WAKU WAKU!')
+        #     elif txt == "image":
+        #         tel_send_image(chat_id)
  
-            else:
-                tel_send_message(chat_id, 'from webhook')
+        #     else:
+        #         tel_send_message(chat_id, 'from webhook')
         except:
-            print("from index-->")
+            print("fail to parse and send response!")
  
         return Response('ok', status=200)
     else:
