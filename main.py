@@ -1,6 +1,6 @@
 import cv2 as cv
 import numpy as np
-from matplotlib import pyplot as plt
+# from matplotlib import pyplot as plt
 
 tv_size = (600, 780)
 
@@ -78,6 +78,7 @@ res_t = cv.bitwise_and(target2, target2, mask = imgErode)
 
 res_f = cv.add(res, res_t)
 cv.imshow('final', res_f)
+cv.imwrite('anya-likes-typhoon8.jpg', res_f)
 # cv.imshow('res_t', res_t)
 
 
