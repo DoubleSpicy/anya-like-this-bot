@@ -136,19 +136,14 @@ class DownloadError(Exception):
 def index():
     if request.method == 'POST':
         msg = request.get_json()
-        # try:
-        chat_id, txt = tel_parse_message(msg)
-        # print(msg)
-        print('=================')
-        print(msg['message']['reply_to_message']['photo'][-1])
-        print(txt)
-        print('=================')
-        if txt == "like this":
-            print('triggered!!')
-            msgHandler(msg)
-        # except Exception as e:
-        #     print("fail to parse and send response!")
-        #     print(e)
+        try:
+            chat_id, txt = tel_parse_message(msg)
+            if txt == "like this":
+                print('triggered!!')
+                msgHandler(msg)
+        except Exception as e:
+            print("fail to parse and send response!")
+            print(e)
  
         return Response('ok', status=200)
     else:
